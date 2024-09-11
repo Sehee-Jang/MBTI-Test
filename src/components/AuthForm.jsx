@@ -4,13 +4,11 @@ import { login, register } from "../api/auth";
 import { Button } from "../styles/CommonStyles";
 import styled from "styled-components";
 
-
 // 회원가입과 로그인 폼을 만드는 AuthForm 컴포넌트, mode와 onSubmit을 props로 받음
-// onSubmit 도 회원가입과 로그인 페이지에서 각각 구현을 하고 props 로 넘겨줌
 const AuthForm = ({ mode, onSubmit }) => {
   const navigate = useNavigate();
 
-  // 폼 데이터를 관리하는 state
+  // 폼 데이터를 관리하는 state, 로그인일 때 닉네임 필드는 비활성화
   const [formData, setFormData] = useState({
     id: "",
     password: "",
@@ -19,7 +17,6 @@ const AuthForm = ({ mode, onSubmit }) => {
 
   // 입력 필드 값이 변경될 때 호출되는 함수
   const handleChange = (e) => {
-    // console.log(e.target.name, e.target.value); // 입력값 확인
     setFormData({
       ...formData, // 기존 값 유지
       [e.target.name]: e.target.value, // 입력된 필드의 name 속성 값에 따라 해당 필드만 업데이트
@@ -29,14 +26,14 @@ const AuthForm = ({ mode, onSubmit }) => {
   // 폼 제출 시 실행되는 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("폼 데이터: ", formData); // formData 값 확인
+    console.log("폼 데이터: ", formData); // formData 값 확인을 위한 로그
 
     try {
       if (mode === "login") {
         // 로그인일 경우
         const response = await login({
           id: formData.id, // 입력받은 id와
-          password: formData.password, // 입력받은 password를 login 함수에 전달
+          password: formData.password, // 입력받은 password를 login API에 전달
         });
         console.log("로그인 응답:  ", response);
         if (response.success) {
@@ -48,14 +45,16 @@ const AuthForm = ({ mode, onSubmit }) => {
       } else if (mode === "signup") {
         // 회원가입일 경우
         const response = await register({
-          id: formData.id, // 입력받은 id와
-          password: formData.password, // 입력받은 password,
-          nickname: formData.nickname, // 그리고 입력받은 nickname을 register 함수에 전달
+          // 입력받은 id, password, nickname을 register API에 전달
+          id: formData.id,
+          password: formData.password,
+          nickname: formData.nickname,
         });
         console.log("회원가입 응답:", response);
         if (response.success) {
-          onSubmit(formData); // 회원가입 성공 시 상위 컴포넌트로 결과 전달
-          navigate("/login"); // 회원가입 성공 후 로그인 페이지로 이동
+          // 회원가입 성공 시
+          onSubmit(formData); // 상위 컴포넌트로 결과 전달
+          navigate("/login");
         } else {
           alert("회원가입에 실패했습니다. 다시 시도해주세요.");
         }
@@ -76,8 +75,8 @@ const AuthForm = ({ mode, onSubmit }) => {
       <Input
         type='text'
         name='id'
-        value={formData.id}
-        onChange={handleChange}
+        value={formData.id} // formData의 id 값과 연결
+        onChange={handleChange} // 입력 값 변경 시 handleChange 호출
         placeholder='아이디'
         required
       />

@@ -4,16 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { Container, Title, Form, Button } from "../styles/CommonStyles";
 
 const Profile = ({ user, setUser }) => {
-  const [nickname, setNickname] = useState(user?.nickname || "");
-  const [loading, setLoading] = useState(true);
+  const [nickname, setNickname] = useState(user?.nickname || ""); // 닉네임 상태 정의, 초기값은 user 객체의 닉네임 또는 빈 문자열
+  const [loading, setLoading] = useState(true); // 로딩 상태를 위한 상태 정의, 초기값은 true
   const navigate = useNavigate();
 
+  // 컴포넌트가 처음 렌더링될 때 사용자 프로필을 가져옴
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const token = localStorage.getItem("accessToken");
-        const profile = await getUserProfile(token);
-        setNickname(profile.nickname);
+        const token = localStorage.getItem("accessToken"); // 로컬 스토리지에서 토큰을 가져옴
+        const profile = await getUserProfile(token); // API를 통해 사용자 프로필을 가져옴
+        setNickname(profile.nickname); // 닉네임 상태를 가져온 프로필의 닉네임으로 설정
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch user profile:", error);
@@ -21,27 +22,27 @@ const Profile = ({ user, setUser }) => {
       }
     };
     fetchUserProfile();
-  }, [navigate]);
+  }, [navigate]); // navigate가 변경될 때마다 effect가 실행됨
 
+  // 닉네임 입력값이 변경될 때 호출되는 함수
   const handleNicknameChange = (e) => {
-    setNickname(e.target.value);
+    setNickname(e.target.value); // 입력값을 닉네임 상태에 반영
   };
 
+  // 폼이 제출될 때 호출되는 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const token = localStorage.getItem("accessToken");
-      // const response = await updateProfile({ nickname }, token);
+      const formData = new FormData(); // 새로운 FormData 객체 생성
+      formData.append("nickname", nickname); // FormData에 닉네임 추가
 
-      const formData = new FormData();
-      formData.append("nickname", nickname);
-
-      const response = await updateProfile(formData);
+      const response = await updateProfile(formData); // 프로필 업데이트 API 호출
 
       if (response.success) {
+        // 업데이트 성공 시
         setUser((prev) => ({
-          ...prev,
-          nickname: response.nickname,
+          ...prev, // 이전 상태를 유지하면서
+          nickname: response.nickname, // 닉네임을 새로 업데이트된 값으로 변경
         }));
         alert("닉네임이 변경되었습니다.");
       } else {
@@ -53,6 +54,7 @@ const Profile = ({ user, setUser }) => {
     }
   };
 
+  // 로딩 중일 때 표시되는 내용
   if (loading) {
     return <div>로딩 중...</div>;
   }

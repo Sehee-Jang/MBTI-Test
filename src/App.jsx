@@ -10,19 +10,21 @@ import TestResult from "./pages/TestResult";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null); // user 상태와 그 상태를 업데이트하는 setUser 함수를 정의, 초기값은 null
   return (
     <BrowserRouter>
       <Layout user={user} setUser={setUser}>
         <Routes>
-          <Route path='/' element={<Home />} />ㄴ
+          <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login setUser={setUser} />} />
           <Route path='/signup' element={<Signup />} />
           <Route
             path='/profile'
             element={
               <ProtectedRoute user={user}>
+                {/* user가 없으면 로그인 페이지로 리디렉션 */}
                 <Profile user={user} setUser={setUser} />
+                {/* Profile 컴포넌트에 user와 setUser 전달 */}
               </ProtectedRoute>
             }
           />

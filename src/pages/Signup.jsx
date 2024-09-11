@@ -7,10 +7,13 @@ import { Container, Title, StyledLink } from "../styles/CommonStyles";
 const Signup = () => {
   const navigate = useNavigate();
 
+  // 회원가입 처리 함수
   const handleSignup = async (formData) => {
     try {
+      // register 함수 호출하여 회원가입 요청 보내기
       const response = await register(formData);
 
+      // 회원가입 성공 여부 확인
       if (response.success) {
         console.log("회원가입 성공 후 페이지 이동");
         navigate("/login"); // 회원가입 후 로그인 페이지로 이동
