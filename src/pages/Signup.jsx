@@ -2,6 +2,7 @@ import React from "react";
 import AuthForm from "../components/AuthForm";
 import { register } from "../api/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { Container, Title, StyledLink } from "../styles/CommonStyles";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,17 +23,15 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <Container>
+      <Title>회원가입</Title>
+      <AuthForm mode='signup' onSubmit={handleSignup} />
       <div>
-        <h1>회원가입</h1>
-        <AuthForm mode='signup' onSubmit={handleSignup} />
-        <div>
-          <p>
-            이미 계정이 있으신가요? <Link to='/login'>로그인</Link>
-          </p>
-        </div>
+        <p>
+          이미 계정이 있으신가요? <StyledLink to='/login'>로그인</StyledLink>
+        </p>
       </div>
-    </div>
+    </Container>
   );
 };
 

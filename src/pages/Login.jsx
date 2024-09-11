@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AuthForm from "../components/AuthForm";
-import { login, getUserProfile } from "../api/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { login } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import { Container, Title, StyledLink } from "../styles/CommonStyles";
 
 // 로그인 페이지 컴포넌트, setUser를 props로 받음
 const Login = ({ setUser }) => {
@@ -35,17 +36,16 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <div>
+    <Container>
+      <Title>로그인</Title>
+      <AuthForm mode='login' onSubmit={handleLogin} />
+
       <div>
-        <h1>로그인</h1>
-        <AuthForm mode='login' onSubmit={handleLogin} />
-        <div>
-          <p>
-            계정이 없으신가요? <Link to='/signup'>회원가입</Link>
-          </p>
-        </div>
+        <p>
+          계정이 없으신가요? <StyledLink to='/signup'>회원가입</StyledLink>
+        </p>
       </div>
-    </div>
+    </Container>
   );
 };
 

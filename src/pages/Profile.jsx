@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserProfile, updateProfile } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import { Container, Title, Form, Button } from "../styles/CommonStyles";
 
 const Profile = ({ user, setUser }) => {
   const [nickname, setNickname] = useState(user?.nickname || "");
@@ -57,23 +58,21 @@ const Profile = ({ user, setUser }) => {
   }
 
   return (
-    <div>
-      <div>
-        <h1>프로필 수정</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>닉네임</label>
-            <input
-              type='text'
-              value={nickname}
-              onChange={handleNicknameChange}
-              placeholder='새 닉네임'
-            />
-          </div>
-          <button type='submit'>프로필 업데이트</button>
-        </form>
-      </div>
-    </div>
+    <Container>
+      <Title>프로필 수정</Title>
+      <Form onSubmit={handleSubmit}>
+        <div>
+          <label>닉네임: </label>
+          <input
+            type='text'
+            value={nickname}
+            onChange={handleNicknameChange}
+            placeholder='새 닉네임'
+          />
+        </div>
+        <Button type='submit'>프로필 업데이트</Button>
+      </Form>
+    </Container>
   );
 };
 
