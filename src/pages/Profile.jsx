@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const Profile = ({ user, setUser }) => {
   const [nickname, setNickname] = useState(user?.nickname || "");
   const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,8 +29,14 @@ const Profile = ({ user, setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("accessToken");
-      const response = await updateProfile({ nickname }, token);
+      // const token = localStorage.getItem("accessToken");
+      // const response = await updateProfile({ nickname }, token);
+
+      const formData = new FormData();
+      formData.append("nickname", nickname);
+
+      const response = await updateProfile(formData);
+
       if (response.success) {
         setUser((prev) => ({
           ...prev,
@@ -42,7 +47,7 @@ const Profile = ({ user, setUser }) => {
         alert("닉네임이 변경에 실패했습니다. 다시 시도해주세요.");
       }
     } catch (error) {
-      console.error("Failed to fetch user profile:", error);
+      console.error("Failed to update profile: ", error);
       alert("프로필 업데이트에 실패했습니다.");
     }
   };

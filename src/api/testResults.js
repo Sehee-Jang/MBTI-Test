@@ -1,7 +1,14 @@
-import React from "react";
+import axios from "axios";
 
-const testResults = () => {
-  return <div>testResults</div>;
+const API_URL = "http://localhost:5000/testResults";
+
+export const getTestResults = async () => {
+  const response = await axios.get(API_URL);
+  return response.data;
 };
 
-export default testResults;
+export const createTestResult = async (resultData) => {};
+
+export const deleteTestResult = async (id) => {};
+
+export const updateTestResultVisibility = async (id, visibility) => {};

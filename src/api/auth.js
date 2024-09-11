@@ -61,6 +61,19 @@ export const getUserProfile = async (token) => {
 };
 
 export const updateProfile = async (formData) => {
-  const response = await axiod.patch(`${API_URL}/profile`, formData);
-  return response.data;
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await axios.patch(`${API_URL}/user`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Profile update error: ",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
 };
