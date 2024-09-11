@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Profile = ({ user, setUser }) => {
   const [nickname, setNickname] = useState(user?.nickname || "");
   const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
