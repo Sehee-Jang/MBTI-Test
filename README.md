@@ -1,8 +1,17 @@
-# React + Vite
+# MBTI 무료 성격 테스트 프로젝트
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 소개
+이 프로젝트는 사용자가 MBTI 성격 유형 테스트를 통해 자신의 성격을 파악할 수 있도록 돕는 웹 애플리케이션입니다. 사용자는 질문에 답변하고, 그 결과를 바탕으로 성격 유형을 확인할 수 있습니다. 또한, 회원가입 및 로그인을 통해 개인화된 프로필 관리 기능도 제공합니다.
 
-Currently, two official plugins are available:
+## 주요 기능
+- **회원가입 및 로그인**: JWT를 사용한 인증 기능을 지원합니다.
+- **성격 테스트**: 여러 질문을 통해 MBTI 성격 유형을 평가할 수 있습니다.
+- **프로필 관리**: 사용자는 자신의 프로필을 업데이트하고 관리할 수 있습니다.
+- **결과 확인**: 테스트 결과를 통해 성격 유형을 확인하고, 다른 사람과 공유할 수 있습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 기술 스택
+- **React**: 프론트엔드 라이브러리
+- **Styled-components**: 컴포넌트 기반 스타일링
+- **Axios**: HTTP 요청을 처리하기 위한 라이브러리
+- **React Router**: 페이지 간의 라우팅을 처리
+- **JWT**: 인증 및 토큰 기반 세션 관리

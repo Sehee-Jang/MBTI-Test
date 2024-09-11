@@ -41,7 +41,7 @@ const Login = ({ setUser }) => {
       <AuthForm mode='login' onSubmit={handleLogin} />
 
       <div>
-        <p>
+        <p style={{marginTop:"30px"} }>
           계정이 없으신가요? <StyledLink to='/signup'>회원가입</StyledLink>
         </p>
       </div>

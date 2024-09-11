@@ -32,7 +32,9 @@ const Layout = ({ children, user }) => {
           <Actions>
             {user ? (
               <>
-                <button onClick={handleLogout}>로그아웃</button>
+                <Logoutbutton onClick={handleLogout}>
+                  로그아웃
+                </Logoutbutton>
               </>
             ) : (
               <Link to='/login'>로그인</Link>
@@ -44,6 +46,10 @@ const Layout = ({ children, user }) => {
     </Container>
   );
 };
+<style>
+  {}
+</style>
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,4 +85,12 @@ const Main = styled.main`
   background-color: #f5f5f5;
 `;
 
+const Logoutbutton = styled.button`
+  color: #fff;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 export default Layout;

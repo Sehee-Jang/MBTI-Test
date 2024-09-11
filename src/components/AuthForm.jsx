@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, register } from "../api/auth";
+import { Button } from "../styles/CommonStyles";
+import styled from "styled-components";
+
 
 // 회원가입과 로그인 폼을 만드는 AuthForm 컴포넌트, mode와 onSubmit을 props로 받음
 // onSubmit 도 회원가입과 로그인 페이지에서 각각 구현을 하고 props 로 넘겨줌
@@ -69,8 +72,8 @@ const AuthForm = ({ mode, onSubmit }) => {
 
   // id 입력을 위한 input 만 힌트로 만들어 두었습니다. 참고해서 한번 만들어봅시다!
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <FormContainer onSubmit={handleSubmit}>
+      <Input
         type='text'
         name='id'
         value={formData.id}
@@ -78,7 +81,7 @@ const AuthForm = ({ mode, onSubmit }) => {
         placeholder='아이디'
         required
       />
-      <input
+      <Input
         type='password'
         name='password'
         value={formData.password}
@@ -88,7 +91,7 @@ const AuthForm = ({ mode, onSubmit }) => {
       />
       {/* 회원가입일 경우에만 닉네임 입력 필드 표시 */}
       {mode === "signup" && (
-        <input
+        <Input
           type='text'
           name='nickname'
           value={formData.nickname}
@@ -98,12 +101,28 @@ const AuthForm = ({ mode, onSubmit }) => {
           className='w-full p-4 border border-gray-300 rounded-lg'
         />
       )}
-      <button type='submit'>
+      <Button type='submit'>
         {/* 만약 mode === "login"의 조건이 참이면 "로그인"이 출력, 거짓이면 "회원가입" 출력  */}
         {mode === "login" ? "로그인" : "회원가입"}
-      </button>
-    </form>
+      </Button>
+    </FormContainer>
   );
 };
 
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem; /* 입력 필드 사이의 여백 */
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+`;
 export default AuthForm;
