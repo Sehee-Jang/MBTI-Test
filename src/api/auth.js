@@ -63,8 +63,9 @@ export const getUserProfile = async (token) => {
 export const updateProfile = async (formData) => {
   try {
     const token = localStorage.getItem("accessToken");
-    const response = await axios.patch(`${API_URL}/user`, formData, {
+    const response = await axios.patch(`${API_URL}/profile`, formData, {
       headers: {
+        "Conten-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       },
     });
