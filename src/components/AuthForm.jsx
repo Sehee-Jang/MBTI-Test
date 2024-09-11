@@ -11,12 +11,12 @@ const AuthForm = ({ mode, onSubmit }) => {
   const [formData, setFormData] = useState({
     id: "",
     password: "",
-    nickname: mode === "signup" ? "" : undefined, // 회원가입일 때만 닉네임 필드 활성화
+    nickname: mode === "signup" ? "" : "", // 회원가입일 때만 닉네임 필드 활성화, 빈 문자열로 초기화
   });
 
   // 입력 필드 값이 변경될 때 호출되는 함수
   const handleChange = (e) => {
-    console.log(e.target.name, e.target.value); // 입력값 확인
+    // console.log(e.target.name, e.target.value); // 입력값 확인
     setFormData({
       ...formData, // 기존 값 유지
       [e.target.name]: e.target.value, // 입력된 필드의 name 속성 값에 따라 해당 필드만 업데이트
@@ -35,9 +35,7 @@ const AuthForm = ({ mode, onSubmit }) => {
           id: formData.id, // 입력받은 id와
           password: formData.password, // 입력받은 password를 login 함수에 전달
         });
-        console.log("FORM DATA ID => ", formData.id); // 값은 전달 되는데............
         console.log("로그인 응답:  ", response);
-
         if (response.success) {
           onSubmit(formData); // 로그인 성공 시 상위 컴포넌트로 결과 전달
           navigate("/"); //  로그인 성공 시 메인으로 이동
@@ -53,7 +51,7 @@ const AuthForm = ({ mode, onSubmit }) => {
         });
         console.log("회원가입 응답:", response);
         if (response.success) {
-          onSubmit(response); // 회원가입 성공 시 상위 컴포넌트로 결과 전달
+          onSubmit(formData); // 회원가입 성공 시 상위 컴포넌트로 결과 전달
           navigate("/login"); // 회원가입 성공 후 로그인 페이지로 이동
         } else {
           alert("회원가입에 실패했습니다. 다시 시도해주세요.");

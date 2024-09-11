@@ -32,31 +32,6 @@ const Login = ({ setUser }) => {
       console.log("로그인 오류: ", error.response?.data || error.message);
       alert("Login failed");
     }
-
-    // try {
-    //   // 로그인 요청
-    //   const response = await login({
-    //     id: formData.id,
-    //     password: formData.password,
-    //   });
-
-    //   console.log("response => ", response);
-    //   // 로그인 성공 시 사용자 정보 저장
-    //   if (response.success) {
-    //     setUser({
-    //       // setUser 함수를 통해 사용자 정보를 저장
-    //       id: response.userId,
-    //       accessToken: response.accessToken,
-    //       nickname: response.nickname,
-    //     });
-    //     navigate("/"); // 로그인 후 페이지 이동
-    //   } else {
-    //     alert("로그인에 실패했습니다. 다시 시도해주세요.");
-    //   }
-    // } catch (error) {
-    //   console.log("로그인 오류: ", error);
-    //   alert("로그인에 실패했습니다. 다시 시도해주세요.");
-    // }
   };
 
   return (
