@@ -4,8 +4,7 @@ import { calculateMBTI } from "../utils/mbtiCalculator";
 import { createTestResult } from "../api/testResults";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-import { Container, Title } from "../styles/CommonStyles";
+import { Container } from "../styles/CommonStyles";
 
 const TestPage = ({ user }) => {
   const navigate = useNavigate();
@@ -16,6 +15,7 @@ const TestPage = ({ user }) => {
 
     // 결과 데이터 객체 생성
     const resultData = {
+      
       userId: user.id,
       nickname: user.nickname,
       result,
@@ -23,8 +23,10 @@ const TestPage = ({ user }) => {
       date: new Date().toISOString(), // 현재 날짜와 시간을 ISO 문자열로 변환하여 저장
       visibility: true, // 결과 공개 여부
     };
+    console.log("나의 MBTI는 ", result);
+    console.log("나의 MBTI 데이터는  ", resultData);
     await createTestResult(resultData); // 테스트 결과를 API를 통해 저장
-    navigate("/results");
+    // navigate("/results");
   };
 
   return (

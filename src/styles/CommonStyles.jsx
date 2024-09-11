@@ -6,7 +6,8 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   font-size: 1rem;
   color: white;
-  background-color: #007bff;
+  /* background-color: #007bff; */
+  background-color: #ff5a5f; /* Airbnb Red */
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -18,18 +19,18 @@ export const Button = styled.button`
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #f5484e;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
   }
   &:active {
-    background-color: #004494;
+    background-color: #ed343b;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   }
 `;
 
 // 링크 스타일
 export const StyledLink = styled(Link)`
-  color: #007bff;
+  color: #ed343b;
   text-decoration: none;
 
   &:hover {

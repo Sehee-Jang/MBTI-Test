@@ -19,6 +19,8 @@ const TestForm = ({ onSubmit }) => {
     onSubmit(answers); // 부모 컴포넌트로 현재 답변 배열을 전달
   };
 
+  // console.log(answers);
+  
   return (
     <CenteredContainer>
       <FormContainer onSubmit={handleSubmit}>
